@@ -1,0 +1,14 @@
+<h2>Choose a Secret Santa</h2>
+<div class="box-container">
+  <div *ngFor="let box of boxes"
+       class="box"
+       [style.backgroundColor]="box.color"
+       (click)="revealBox(box)">
+    <span *ngIf="box.revealed">{{ box.userName }}</span>
+    <span *ngIf="!box.revealed">?</span>
+  </div>
+</div>
+
+<div *ngIf="selectedUserName" class="selection-message">
+  <p>Your secret santa is {{ selectedUserName }}</p>
+</div>

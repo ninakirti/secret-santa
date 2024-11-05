@@ -1,0 +1,6 @@
+<h2>Login</h2>
+<form (ngSubmit)="login()">
+  <input type="text" [(ngModel)]="name" placeholder="Enter your name" name="name" required />
+  <button type="submit">Login</button>
+</form>
+<div *ngIf="loginFailed" class="error">Login failed. Please try again.</div>

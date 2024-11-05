@@ -1,0 +1,23 @@
+.box-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+}
+
+.selection-message {
+  margin-top: 20px;
+  font-size: 1.2em;
+  color: #333;
+}
