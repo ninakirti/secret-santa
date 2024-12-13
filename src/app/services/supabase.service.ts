@@ -122,6 +122,16 @@ export class SupabaseService {
     return { data: data as Participant | null, error };
   }
 
+  async getParticipantById(id: number): Promise<{ data: Participant | null; error: any }> {
+    const { data, error } = await this.supabase
+      .from('participants')
+      .select('*')
+      .eq('id', id)
+      .single(); // Fetch a single participant by ID
+    return { data: data as Participant | null, error };
+  }
+
+
   /*
   // Mark a participant as chosen
   async chooseParticipant(participantId: string) {

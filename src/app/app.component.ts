@@ -24,15 +24,27 @@ export class AppComponent implements OnInit { //, OnDestroy {
     this.subscribeToParticipantChanges();
   }
 
-
   async fetchLoggedInParticipant() {
     const { data, error } = await this.supabaseService.getParticipantByName(this.username);
     if (error) {
       console.error('Error fetching logged-in participant:', error);
     } else {
       this.loggedInParticipant = data;
+
+      // Only check for selected_santa if loggedInParticipant is not null
+      if (this.loggedInParticipant && this.loggedInParticipant.selected_santa !== null) {
+        const { data: selectedSantaData, error: santaError } =
+          await this.supabaseService.getParticipantById(this.loggedInParticipant.selected_santa);
+
+        if (santaError) {
+          console.error('Error fetching selected Santa:', santaError);
+        } else {
+          this.selectedParticipant = selectedSantaData; // Store the Santa's details
+        }
+      }
     }
   }
+
 
   async fetchLoginParticipants() {
     console.log('Fetching all participants for login...');

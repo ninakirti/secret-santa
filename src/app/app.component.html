@@ -19,7 +19,9 @@
   <ul>
     <ng-container *ngFor="let participant of participants">
       <li *ngIf="participant.name !== loggedInParticipant?.name">
-        <button (click)="chooseParticipant(participant)">
+        <button (click)="chooseParticipant(participant)"
+        [disabled]="selectedParticipant || participant.name === loggedInParticipant?.name || participant.chosen"
+        >
           {{ participant.name }}
         </button>
       </li>
