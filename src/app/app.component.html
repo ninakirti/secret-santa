@@ -16,21 +16,21 @@
   <h1>Welcome, {{ username }}</h1>
   <p>Select a participant for your Secret Santa:</p>
 
-  <ul>
+  <div class="participants-grid">
     <ng-container *ngFor="let participant of participants">
-      <li *ngIf="participant.name !== loggedInParticipant?.name">
-        <button (click)="chooseParticipant(participant)"
-        [disabled]="selectedParticipant || participant.name === loggedInParticipant?.name || participant.chosen"
-        >
-          {{ participant.name }}
-        </button>
-      </li>
+      <div *ngIf="participant.name !== loggedInParticipant?.name"
+           class="participant-box"
+           (click)="chooseParticipant(participant)"
+           [class.disabled]="selectedParticipant || participant.name === loggedInParticipant?.name || participant.chosen">
+        <div class="box-content">
+          <p *ngIf="!participant.chosen">{{ participant.name }}</p>
+          <p *ngIf="participant.chosen">Selected</p>
+        </div>
+      </div>
     </ng-container>
-  </ul>
-
+  </div>
 
   <div *ngIf="selectedParticipant">
     <p>You selected: {{ selectedParticipant.name }}</p>
   </div>
 </div>
-

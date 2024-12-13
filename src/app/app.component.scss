@@ -17,7 +17,7 @@ form {
 
   button {
     padding: 8px;
-    background-color: #007bff;
+    background-color: green;  /* Changed to green */
     color: #fff;
     border: none;
     cursor: pointer;
@@ -25,7 +25,64 @@ form {
     border-radius: 4px;
 
     &:hover {
-      background-color: #0056b3;
+      background-color: darkgreen;  /* Darker shade for hover effect */
     }
+  }
+}
+
+.participants-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 16px;
+  padding: 20px 0;
+  justify-items: center;
+}
+
+.participant-box {
+  width: 120px;
+  height: 120px;
+  background-color: red;  /* Participant box background red */
+  border-radius: 8px;
+  cursor: pointer;
+  perspective: 1000px;  /* Required for the flip effect */
+  transition: transform 0.6s;
+
+  &.disabled {
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  .box-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    backface-visibility: hidden;  /* Hides the back of the box */
+    transform: rotateY(180deg);
+    transition: transform 0.6s;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;  /* Ensure text is white for contrast */
+  }
+
+  &:hover .box-content {
+    transform: rotateY(0);
+  }
+
+  .box-content p {
+    margin: 0;
+    color: #fff;  /* Ensure text remains white */
+  }
+
+  /* Front side of the box */
+  & > .box-content:first-child {
+    transform: rotateY(0);
+  }
+
+  /* Back side of the box */
+  & > .box-content:last-child {
+    transform: rotateY(180deg);
   }
 }
